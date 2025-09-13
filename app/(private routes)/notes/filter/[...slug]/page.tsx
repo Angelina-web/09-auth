@@ -2,7 +2,7 @@ import css from "./NotesPage.module.css";
 import NoteListClient from "./Notes.client";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { HydrationBoundary } from "@tanstack/react-query";
-import { fetchNotes } from "@/lib/api/api";
+import { fetchServerNotes } from "@/lib/api/serverApi";
 import { Metadata } from "next";
 
 interface NotesPageProps {
@@ -41,7 +41,7 @@ export default async function NotesPage({ params }: NotesPageProps) {
 
   await queryClient.prefetchQuery({
     queryKey: ["notes", tag, 1],
-    queryFn: () => fetchNotes(1, tag),
+    queryFn: () => fetchServerNotes(1, tag),
   });
 
   return (
