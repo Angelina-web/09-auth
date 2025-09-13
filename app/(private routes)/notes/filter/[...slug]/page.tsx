@@ -2,7 +2,7 @@ import css from "./NotesPage.module.css";
 import NoteListClient from "./Notes.client";
 import { QueryClient, dehydrate } from "@tanstack/react-query";
 import { HydrationBoundary } from "@tanstack/react-query";
-import { fetchNotes } from "@/lib/api";
+import { fetchNotes } from "@/lib/api/api";
 import { Metadata } from "next";
 
 interface NotesPageProps {

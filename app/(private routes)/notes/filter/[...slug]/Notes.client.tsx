@@ -5,7 +5,7 @@ import SearchBox from "@/components/SearchBox/SearchBox";
 import { useRouter } from "next/navigation";
 import { useQuery, keepPreviousData } from "@tanstack/react-query";
 import { useDebouncedCallback } from "use-debounce";
-import { fetchNotes, type NotesHttpResponse } from "@/lib/api";
+import { fetchNotes, type NoteResponse } from "@/lib/api/clientApi";
 import { useState } from "react";
 import css from "./NotesPage.module.css";
 
@@ -26,7 +26,7 @@ const NoteListClient = ({ tag }: NoteListClientProps) => {
     setPage(1);
     debouncedSetQuery(e.target.value);
   };
-  const { data } = useQuery<NotesHttpResponse>({
+  const { data } = useQuery<NoteResponse>({
     queryKey: ["notes", { query: debouncedQuery, page: page, tag: tag }],
     queryFn: () => fetchNotes(page, debouncedQuery, tag),
     placeholderData: keepPreviousData,
