@@ -43,7 +43,7 @@ export const updateMe = async (data: UpdateMeRequest): Promise<User> => {
 };
 
 export const register = async (data: RegisterRequest) => {
-  const res = await nextServer.post<User>("auth/register", data);
+  const res = await nextServer.post<User>("auth/register", { ...data });
   return res.data;
 };
 
